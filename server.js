@@ -17,11 +17,11 @@ app.set('view engine', 'html');
 app.set('./src/app', 'dist-browser');
 
 // server static files
-app.use(express.static(__dirname + '/dist-browser', { index: false }));
+app.use(express.static(__dirname + '/dist/studentEnrollment'));
 
 // Create link to Angular build directory
 var distDir = "student-enrollment";
-app.use(express.static(distDir));
+//app.use(express.static(distDir));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
@@ -55,7 +55,10 @@ function handleError(res, reason, message, code) {
    *    GET: finds all contacts
    *    POST: creates a new contact
    */
-  
+  app.get('/*', function(req,res) {
+    
+    res.sendFile(path.join(__dirname+'/dist/studentEnrollment/index.html'));
+    });
 // app.get('/', function(req, res) {
 //     res.sendFile(path.resolve('src\app\app.component.html'));
 //   }
