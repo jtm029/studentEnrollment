@@ -55,7 +55,7 @@ function handleError(res, reason, message, code) {
    *    GET: finds all contacts
    *    POST: creates a new contact
    */
-  app.get('/*', function(req,res) {
+  app.get('/', function(req,res) {
     
     res.sendFile(path.join(__dirname+'/dist/studentEnrollment/index.html'));
     });
