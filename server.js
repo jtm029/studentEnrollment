@@ -13,15 +13,11 @@ app.use(bodyParser.json());
 //   bootstrap: AppServerModule,
 // }));
 
-app.set('view engine', 'html');
-app.set('./src/app', 'dist-browser');
+//app.set('view engine', 'html');
+//app.set('./src/app', 'dist-browser');
 
 // server static files
 app.use(express.static(__dirname + '/dist/studentEnrollment'));
-
-// Create link to Angular build directory
-var distDir = "student-enrollment";
-//app.use(express.static(distDir));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
