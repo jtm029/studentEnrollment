@@ -1,21 +1,21 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Contact } from '../contact';
-import { ContactService } from '../contact.service';
+import { Contact } from '../models';
+import { StudentService } from '../student.service';
 
 @Component({
   selector: 'app-contact-list',
-  templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css'],
-  providers: [ContactService]
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css'],
+  providers: [StudentService]
 })
 
-export class ContactListComponent implements OnInit {
+export class MenuComponent implements OnInit {
 
   contacts: Contact[];
   selectedContact: Contact;
   @Output() addData: EventEmitter<any> = new EventEmitter();
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: StudentService) { }
 
   ngOnInit() {
      this.contactService

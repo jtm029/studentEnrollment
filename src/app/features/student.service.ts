@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Contact } from './contact';
+import { Contact } from './models';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
-export class ContactService {
+export class StudentService {
     private contactsUrl = '/api/contacts';
 
     constructor(private http: Http) {}

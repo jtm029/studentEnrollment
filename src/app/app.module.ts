@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { ContactListComponent } from './features/menu/contact-list.component';
+import { MenuComponent } from './features/menu/menu.component';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AddFormComponent } from './features/add-form/add-form.component';
@@ -11,7 +11,7 @@ import { AddFormComponent } from './features/add-form/add-form.component';
   declarations: [
     AppComponent,
     AddFormComponent,
-    ContactListComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

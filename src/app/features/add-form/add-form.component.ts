@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Contact } from '../contact';
-import { ContactService } from '../contact.service';
+import { Contact } from '../models';
+import { StudentService } from '../student.service';
 
 @Component({
   selector: 'app-add-form',
@@ -19,7 +19,7 @@ export class AddFormComponent {
   @Input()
   deleteHandler: any;
 
-  constructor(private contactService: ContactService) {}
+  constructor(private contactService: StudentService) {}
 
   createContact(contact: Contact) {
     this.contactService.createContact(contact).then((newContact: Contact) => {
