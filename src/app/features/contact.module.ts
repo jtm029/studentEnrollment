@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContactListComponent } from './contact-list/contact-list.component';
+import { ContactListComponent } from './menu/contact-list.component';
 
 
 

@@ -3,7 +3,6 @@ import { Contact } from '../contact';
 import { ContactService } from '../contact.service';
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css'],
