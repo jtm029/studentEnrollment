@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class StudentService {
-    private studentsUrl = '/api/student';
+    private studentsUrl = '/api/students';
 
     constructor(private http: Http) {}
 
