@@ -1,0 +1,35 @@
+.container{
+   /* align-items: center;
+   background-color: grey;
+   width: 50%;
+   height: 100%;
+   margin-top: 10em; */
+}
+html{
+   height: 100%;
+}
+.options {
+   text-align: center;
+}
+
+.header {
+   text-align: center;
+   color: white
+}
+
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+   height: 100%;
+}
+
+.sidenav {
+   width: 250px;
+   color: blue;
+}
+
+main {
+   padding: 10px;
+}
+html, body { 
+   margin: 0;
+   height: 100%;
+}

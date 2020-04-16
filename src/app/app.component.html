@@ -1,3 +1,15 @@
 <div class="container">
-  <app-contact-list></app-contact-list>
-</div>
+   <h2 class="header">New Menu</h2>
+
+   <div class="p-grid options">
+      <button routerLink="/contact">1) Add a student to the Student table</button>
+      <br>
+      <button (click)="add()">2) Add a course to the Course table</button>
+      <button (click)="gotoContact()">3) Add an application to the Enrollment table</button>
+      <button>4) View all students</button>
+      <button>5) View all courses from a given department</button>
+      <button>6) View all courses for a given student</button>
+   </div>
+  
+</div> <router-outlet></router-outlet>
+ 

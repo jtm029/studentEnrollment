@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Contact } from '../contact';
 import { ContactService } from '../contact.service';
-import { ContactDetailsComponent } from '../contact-details/contact-details.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -15,6 +14,7 @@ export class ContactListComponent implements OnInit {
 
   contacts: Contact[];
   selectedContact: Contact;
+  @Output() addData: EventEmitter<any> = new EventEmitter();
 
   constructor(private contactService: ContactService) { }
 
@@ -58,7 +58,9 @@ export class ContactListComponent implements OnInit {
     // By default, a newly-created contact will have the selected state.
     this.selectContact(contact);
   }
-
+ onAdd(){
+   this.addData.emit();
+ }
   deleteContact = (contactId: string) => {
     const idx = this.getIndexOfContact(contactId);
     if (idx !== -1) {
