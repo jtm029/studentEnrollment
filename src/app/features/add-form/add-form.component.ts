@@ -21,21 +21,21 @@ export class AddFormComponent {
 
   constructor(private contactService: StudentService) {}
 
-  createContact(contact: Contact) {
-    this.contactService.createContact(contact).then((newContact: Contact) => {
-      this.createHandler(newContact);
-    });
-  }
+  // createContact(contact: Contact) {
+  //   this.contactService.createContact(contact).then((newContact: Contact) => {
+  //     this.createHandler(newContact);
+  //   });
+  // }
 
-  updateContact(contact: Contact): void {
-    this.contactService.updateContact(contact).then((updatedContact: Contact) => {
-      this.updateHandler(updatedContact);
-    });
-  }
+  // updateContact(contact: Contact): void {
+  //   this.contactService.updateContact(contact).then((updatedContact: Contact) => {
+  //     this.updateHandler(updatedContact);
+  //   });
+  // }
 
-  deleteContact(contactId: string): void {
-    this.contactService.deleteContact(contactId).then((deletedContactId: string) => {
-      this.deleteHandler(deletedContactId);
-    });
-  }
+  // deleteContact(contactId: string): void {
+  //   this.contactService.deleteContact(contactId).then((deletedContactId: string) => {
+  //     this.deleteHandler(deletedContactId);
+  //   });
+  // }
 }

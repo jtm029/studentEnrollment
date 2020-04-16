@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './features/menu/menu.component';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import {TableModule} from 'primeng/table';
 import { AddFormComponent } from './features/add-form/add-form.component';
+import { ResultTableComponent } from './features/result-table/result-table.component';
 @NgModule({
   declarations: [
     AppComponent,
     AddFormComponent,
-    MenuComponent
+    MenuComponent,
+    ResultTableComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
+    TableModule,
     RouterModule.forRoot([]),
     // tslint:disable-next-line: deprecation
     HttpModule

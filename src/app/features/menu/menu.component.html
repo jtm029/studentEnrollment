@@ -1,22 +1,38 @@
-<div class="row">
-    <div class="col-md-5">
-      <h2>Contacts</h2>
-      <ul class="list-group">
+<div class="row nav">
+    <div *ngIf="show" class="col-md-5">
+      <h2>Student Enrollment Navigation</h2>
+      <!-- <ul class="list-group">
         <li class="list-group-item"
           *ngFor="let contact of contacts"
           (click)="selectContact(contact)"
           [class.active]="contact === selectedContact">
           {{contact.name}}
         </li>
-      </ul>
-      <button class="btn btn-warning" (click)="createNewContact()">New</button>
+      </ul> -->
+      <button class="btn btn-warning" (click)="createNewContact()">1) Add a student to the Student table</button>
+      <br>
+      <button class="btn btn-warning" (click)="createNewContact()">2) Add a course to the Course table</button>
+      <br>
+      <button class="btn btn-warning" (click)="createNewContact()">3) Add an application to the Enrollment table</button>
+      <br>
+      <button class="btn btn-warning" (click)="showTable()">4) View all students</button>
+      <br>
+      <button class="btn btn-warning" (click)="createNewContact()">5) View all courses from a given department</button>
+      <br>
+      <button class="btn btn-warning" (click)="createNewContact()">6) View all courses for a given student</button>
     </div>
+
     <div class="col-md-5 col-md-offset-2">
       <app-add-form
-        [contact]="selectedContact"
-        [createHandler]="addContact"
-        [updateHandler]="updateContact"
-        [deleteHandler]="deleteContact">
+        [contact]="selectedContact">
       </app-add-form>
+    </div>
+
+    <div class="col-md-5 col-md-offset-2">
+      <app-result-table
+        [showResults]="showResult"
+        [cols]="cols"
+        [data]="studentData">
+      </app-result-table>
     </div>
   </div>

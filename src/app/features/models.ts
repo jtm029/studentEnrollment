@@ -8,3 +8,22 @@ export class Contact {
       work: string;
     };
   }
+
+export class Student {
+   StudentId: string;
+   StudentName: string;
+   Major: string;
+  }
+
+export class Courses {
+   DeptCode: string;
+   CourseNum: string;
+   Title: string;
+   CreditHours: number;
+  }
+
+export class Enrollment {
+  StudentId: string;
+  DeptCode: string;
+  CourseNum: string;
+}

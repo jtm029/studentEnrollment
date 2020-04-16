@@ -5,18 +5,13 @@ var path = require("path");
 var ObjectID = mongodb.ObjectID;
 
 var CONTACTS_COLLECTION = "contacts";
+var STUDENT_COLLECTION = "Student";
+var COURSE_COLLECTION = "Course";
+var ENROLLMENT_COLLECTION = "Enrollment";
 
 var app = express();
 app.use(bodyParser.json());
 
-// server.engine('html', ngExpressEngine({
-//   bootstrap: AppServerModule,
-// }));
-
-//app.set('view engine', 'html');
-//app.set('./src/app', 'dist-browser');
-
-// server static files
 app.use(express.static(__dirname + '/dist/studentEnrollment'));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
@@ -46,11 +41,7 @@ function handleError(res, reason, message, code) {
     console.log("ERROR: " + reason);
     res.status(code || 500).json({"error": message});
   }
-  
-  /*  "/api/contacts"
-   *    GET: finds all contacts
-   *    POST: creates a new contact
-   */
+
   app.get('/', function(req,res) {
     
     res.sendFile(path.join(__dirname+'/dist/studentEnrollment/index.html'));
@@ -66,10 +57,10 @@ function handleError(res, reason, message, code) {
   //     <app-root>);
   // });
   
-  app.get("/api/contacts", function(req, res) {
-    db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+  app.get("/api/students", function(req, res) {
+    db.collection(STUDENT_COLLECTION).find({}).toArray(function(err, docs) {
       if (err) {
-        handleError(res, err.message, "Failed to get contacts.");
+        handleError(res, err.message, "Failed to get students.");
       } else {
         res.status(200).json(docs);
       }
