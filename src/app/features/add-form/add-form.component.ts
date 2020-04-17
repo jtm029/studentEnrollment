@@ -27,14 +27,35 @@ export class AddFormComponent {
 
   @Output() menu: EventEmitter<boolean> = new EventEmitter();
 
+  error = false;
 
-  constructor(private contactService: StudentService) {}
+  constructor(private studentService: StudentService) {}
 
   createStudent(student: Student) {
-    this.contactService.createStudent(student);
-    console.log('student', student);
-    if (student._id){
+    this.studentService.createStudent(student);
+    if ((student.StudentId) && (student.Major) && (student.StudentName)){
       this.goMenu();
+    } else {
+      this.error = true;
+    }
+  }
+
+  createCourse(course: Courses) {
+    this.studentService.createCourse(course);
+    if ((course.DeptCode) && (course.CourseNum) && (course.Title) && (course.CreditHours)){
+      this.goMenu();
+    } else {
+      console.log('here')
+      this.error = true;
+    }
+  }
+
+  createEnrollment(enrollment: Enrollment) {
+    this.studentService.createEnrollment(enrollment);
+    if ((enrollment.StudentId) && (enrollment.CourseNum) && (this.course.DeptCode)){
+      this.goMenu();
+    } else {
+      this.error = true;
     }
   }
 
@@ -52,5 +73,6 @@ export class AddFormComponent {
 
   goMenu(){
     this.menu.emit();
+    this.error = false;
   }
 }

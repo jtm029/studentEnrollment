@@ -112,28 +112,4 @@ export class MenuComponent implements OnInit {
     this.show = false;
     this.showForm = true;
   }
-
-  // deleteContact = (contactId: string) => {
-  //   const idx = this.getIndexOfContact(contactId);
-  //   if (idx !== -1) {
-  //     this.contacts.splice(idx, 1);
-  //     this.selectContact(null);
-  //   }
-  //   return this.contacts;
-  // }
-
-  // addStudent = (student: Student) => {
-  //   this.students.push(student);
-  //   this.selectedStudent = student;
-  //   return this.students;
-  // }
-
-  // updateContact = (contact: Contact) => {
-  //   const idx = this.getIndexOfContact(contact._id);
-  //   if (idx !== -1) {
-  //     this.contacts[idx] = contact;
-  //     this.selectContact(contact);
-  //   }
-  //   return this.contacts;
-  // }
 }

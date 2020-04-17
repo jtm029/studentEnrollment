@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Contact, Student } from './models';
+import { Contact, Student, Courses, Enrollment } from './models';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class StudentService {
     private studentsUrl = '/api/students';
+    private coursesUrl = '/api/courses';
+    private enrollmentsUrl = '/api/enrollments';
 
     constructor(private http: Http) {}
 
@@ -24,15 +26,29 @@ export class StudentService {
                  .catch(this.handleError);
     }
 
-    // get("/api/contacts/:id") endpoint not used by Angular app
+     // post("/api/courses")
+     createCourse(newCourse: Courses): Promise<void | Courses> {
+      return this.http.post(this.coursesUrl, newCourse)
+                 .toPromise()
+                 .then(response => response.json() as Courses)
+                 .catch(this.handleError);
+    }
 
-    // delete("/api/contacts/:id")
-    // deleteContact(delContactId: string): Promise<void | string> {
-    //   return this.http.delete(this.contactsUrl + '/' + delContactId)
-    //              .toPromise()
-    //              .then(response => response.json() as string)
-    //              .catch(this.handleError);
-    // }
+      // post("/api/enrollments")
+      createEnrollment(newEnrollment: Enrollment): Promise<void | Enrollment> {
+        return this.http.post(this.enrollmentsUrl, newEnrollment)
+                   .toPromise()
+                   .then(response => response.json() as Enrollment)
+                   .catch(this.handleError);
+      }
+
+    // get("/api/students/:id")
+    getStudent(studentId: string): Promise<void | Student> {
+      return this.http.delete(this.studentsUrl + '/' + studentId)
+                 .toPromise()
+                 .then(response => response.json() as Student)
+                 .catch(this.handleError);
+    }
 
     // put("/api/contacts/:id")
     // updateContact(putContact: Contact): Promise<void | Contact> {

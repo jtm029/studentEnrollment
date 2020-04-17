@@ -67,6 +67,16 @@ function handleError(res, reason, message, code) {
     });
   });
   
+  app.get("/api/students/:id", function(req, res) {
+    db.collection(STUDENT_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get student");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+  });
+
   app.post("/api/students", function(req, res) {
     var newStudent = req.body;
     newStudent._id = new ObjectID();
@@ -77,6 +87,40 @@ function handleError(res, reason, message, code) {
       db.collection(STUDENT_COLLECTION).insertOne(newStudent, function(err, doc) {
         if (err) {
           handleError(res, err.message, "Failed to create new student.");
+        } else {
+          res.status(201).json(doc.ops[0]);
+        }
+      });
+    }
+  });
+  
+  app.post("/api/courses", function(req, res) {
+    var newCourse = req.body;
+    newCourse._id = new ObjectID();
+  
+    if (!req.body.DeptCode) {
+      handleError(res, "Invalid user input", "Must provide a department.", 400);
+    } else {
+      db.collection(COURSE_COLLECTION).insertOne(newCourse, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to create new course.");
+        } else {
+          res.status(201).json(doc.ops[0]);
+        }
+      });
+    }
+  });
+
+  app.post("/api/enrollments", function(req, res) {
+    var newEnrollment = req.body;
+    newEnrollment._id = new ObjectID();
+  
+    if (!req.body.StudentId) {
+      handleError(res, "Invalid user input", "Must provide a student Id.", 400);
+    } else {
+      db.collection(ENROLLMENT_COLLECTION).insertOne(newEnrollment, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to create new enrollment.");
         } else {
           res.status(201).json(doc.ops[0]);
         }

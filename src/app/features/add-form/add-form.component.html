@@ -19,9 +19,52 @@
         <label for="student-Major">Major</label>
         <input class="form-control" name="student-Major" [(ngModel)]="student.Major" placeholder="Major"/>
       </div>
+      
+      <b *ngIf="error" class="error">Please fill out form</b>
+      <br>
       <button class="btn btn-primary" *ngIf="!student._id" (click)="createStudent(student)">Create</button>
-      <!-- <button class="btn btn-info" *ngIf="contact._id" (click)="updateContact(contact)">Update</button>
-      <button class="btn btn-danger" *ngIf="contact._id" (click)="deleteContact(contact._id)">Delete</button> -->
+      <button class="btn btn-warning menu" (click)="goMenu()">Menu</button>
     </form>
-    <button class="btn btn-warning" (click)="goMenu()">Menu</button>
+  </div>
+  <div *ngIf="course" class="row">
+    <form class="col-md-12">
+      <div class="form-group">
+        <label for="course-Title">Title</label>
+        <input class="form-control" name="course-Title" [(ngModel)]="course.Title" placeholder="Course Title"/>
+      </div>
+      <div class="form-group">
+        <label for="course-CourseNum">Course Number</label>
+        <input class="form-control" name="course-CourseNum" [(ngModel)]="course.CourseNum" placeholder="Course Number"/>
+      </div>
+      <div class="form-group">
+        <label for="course-DeptCode">Major</label>
+        <input class="form-control" name="course-DeptCode" [(ngModel)]="course.DeptCode" placeholder="Department Code"/>
+      </div>
+      
+      <b *ngIf="error" class="error">Please fill out form</b>
+      <br>
+      <button class="btn btn-primary" *ngIf="!course._id" (click)="createCourse(course)">Create</button>
+      <button class="btn btn-warning menu" (click)="goMenu()">Menu</button>
+    </form>
+  </div>
+  <div *ngIf="enrollment" class="row">
+    <form class="col-md-12">
+      <div class="form-group">
+        <label for="enrollment-StudentId">Student Id</label>
+        <input class="form-control" name="enrollment-StudentId" [(ngModel)]="enrollment.StudentId" placeholder="Student Id"/>
+      </div>
+      <div class="form-group">
+        <label for="enrollment-CourseNum">Course Number</label>
+        <input class="form-control" name="enrollment-CourseNum" [(ngModel)]="enrollment.CourseNum" placeholder="Course Number"/>
+      </div>
+      <div class="form-group">
+        <label for="enrollment-DeptCode">Department Code</label>
+        <input class="form-control" name="enrollment-DeptCode" [(ngModel)]="enrollment.DeptCode" placeholder="Department Code"/>
+      </div>
+      
+      <b *ngIf="error" class="error">Please fill out form</b>
+      <br>
+      <button class="btn btn-primary" *ngIf="!enrollment._id" (click)="createEnrollment(enrollment)">Create</button>
+      <button class="btn btn-warning menu" (click)="goMenu()">Menu</button>
+    </form>
   </div>

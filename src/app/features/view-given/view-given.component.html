@@ -1,4 +1,20 @@
 <div >
-    <p>Works</p>
- <button class="btn btn-warning" (click)="goMenu()">Menu</button>
+     <ul class="list-group">
+        <li class="list-group-item"
+          *ngFor="let student of students"
+          (click)="selectStudent(student)"
+          [class.active]="student === selectedStudent">
+          {{student.StudentName}}
+        </li>
+      </ul>
+
+      <div *ngIf="showResult" class="col-md-5 col-md-offset-2">
+        <app-result-table
+          [showResults]="showResult"
+          [cols]="cols"
+          [data]="data"
+          (menu)="goMenu()">
+        </app-result-table>
+      </div>
+ <button *ngIf="!showResult" class="btn btn-warning" (click)="goMenu()">Menu</button>
 </div>
