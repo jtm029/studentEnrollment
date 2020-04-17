@@ -39,7 +39,7 @@ export class ViewGivenComponent implements OnInit {
       { field: 'CreditHours', header: 'Credit Hours' }
     ];
 
-    console.log('student', this.selectedStudent);
+    console.log('student', this.selectedStudent, this.selectedStudent._id);
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
