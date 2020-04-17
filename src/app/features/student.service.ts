@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Contact, Student, Courses, Enrollment } from './models';
 import { Http, Response } from '@angular/http';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable()
 export class StudentService {
     private studentsUrl = '/api/students';
@@ -43,11 +44,10 @@ export class StudentService {
       }
 
       // get("/api/enrollments/:id")
-    getEnrollmentsByStudentId(studentId: string): Promise<void | Enrollment[]> {
+    getEnrollmentsByStudentId(studentId: string): Observable<Enrollment[]> {
       return this.http.get(this.enrollmentsUrl + '/' + studentId)
-                 .toPromise()
-                 .then(response => response.json() as Enrollment[])
-                 .catch(this.handleError);
+                 .pipe(
+                 map(response => response.json() as Enrollment[]));
     }
 
     // get("/api/courses/:id/:code")

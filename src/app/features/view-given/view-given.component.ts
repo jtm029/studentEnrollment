@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angu
 import { MenuComponent } from '../menu/menu.component';
 import { Student, Courses, Enrollment } from '../models';
 import { StudentService } from '../student.service';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-given',
@@ -30,6 +31,10 @@ export class ViewGivenComponent implements OnInit {
     this.menu.emit();
   }
 
+  updateEnrollments(enroll: Enrollment[]){
+    this.enrollment = enroll;
+  }
+
   showStudentTable(){
     this.showResult = true;
     this.cols = [
@@ -44,8 +49,9 @@ export class ViewGivenComponent implements OnInit {
 
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
-    .then((enrollments: Enrollment[]) => {
-      this.enrollment = enrollments;
+    .pipe(takeWhile(() => true))
+    .subscribe((enrollments: Enrollment[]) => {
+      this.updateEnrollments(enrollments);
     });
 
     console.log('enroll', this.enrollment);

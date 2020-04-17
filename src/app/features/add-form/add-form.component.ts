@@ -50,8 +50,9 @@ export class AddFormComponent {
   }
 
   createEnrollment(enrollment: Enrollment) {
+    console.log(enrollment);
     this.studentService.createEnrollment(enrollment);
-    if ((enrollment.StudentId) && (enrollment.CourseNum) && (this.course.DeptCode)){
+    if ((enrollment.StudentId) && (enrollment.CourseNum) && (enrollment.DeptCode)){
       this.goMenu();
     } else {
       this.error = true;
