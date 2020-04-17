@@ -68,7 +68,7 @@ function handleError(res, reason, message, code) {
   });
   
   app.get("/api/enrollments/:id", function(req, res) {
-    db.collection(ENROLLMENT_COLLECTION).find({ StudentId: req.params.id }).toArray(function(err, doc) {
+    db.collection(ENROLLMENT_COLLECTION).find({ _id: req.params.id }).toArray(function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to get enrollment");
       } else {
