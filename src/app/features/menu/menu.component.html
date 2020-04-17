@@ -9,30 +9,41 @@
           {{contact.name}}
         </li>
       </ul> -->
-      <button class="btn btn-warning" (click)="createNewContact()">1) Add a student to the Student table</button>
+      <button class="btn btn-warning" (click)="createNewStudent()">1) Add a student to the Student table</button>
       <br>
-      <button class="btn btn-warning" (click)="createNewContact()">2) Add a course to the Course table</button>
+      <button class="btn btn-warning" (click)="createNewCourse()">2) Add a course to the Course table</button>
       <br>
-      <button class="btn btn-warning" (click)="createNewContact()">3) Add an application to the Enrollment table</button>
+      <button class="btn btn-warning" (click)="createNewEnrollment()">3) Add an application to the Enrollment table</button>
       <br>
       <button class="btn btn-warning" (click)="showTable()">4) View all students</button>
       <br>
-      <button class="btn btn-warning" (click)="createNewContact()">5) View all courses from a given department</button>
+      <button class="btn btn-warning" (click)="showComponent()">5) View all courses from a given department</button>
       <br>
-      <button class="btn btn-warning" (click)="createNewContact()">6) View all courses for a given student</button>
+      <button class="btn btn-warning" (click)="showComponent()">6) View all courses for a given student</button>
     </div>
 
-    <div class="col-md-5 col-md-offset-2">
+    <div *ngIf="showForm" class="col-md-5 col-md-offset-2">
       <app-add-form
-        [contact]="selectedContact">
+        [student]="selectedStudent"
+        [course]="selectedCourse"
+        [enrollment]="selectedEnrollment"
+        (menu)="showMenu()">
       </app-add-form>
     </div>
 
-    <div class="col-md-5 col-md-offset-2">
+    <div *ngIf="showResult" class="col-md-5 col-md-offset-2">
       <app-result-table
         [showResults]="showResult"
         [cols]="cols"
-        [data]="studentData">
+        [data]="studentData"
+        (menu)="showMenu()">
       </app-result-table>
+    </div>
+
+    <div *ngIf="lastOptions" class="col-md-5 col-md-offset-2">
+      <app-view-given
+        [viewComponent]="lastOptions"
+        (menu)="showMenu()">
+      </app-view-given>
     </div>
   </div>

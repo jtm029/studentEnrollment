@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-result-table',
@@ -16,9 +16,15 @@ export class ResultTableComponent implements OnInit {
   @Input()
   cols: any;
 
+  @Output() menu: EventEmitter<boolean> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  goMenu(){
+    this.showResults = false;
+    this.menu.emit();
+  }
 }

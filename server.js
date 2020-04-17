@@ -67,16 +67,16 @@ function handleError(res, reason, message, code) {
     });
   });
   
-  app.post("/api/contacts", function(req, res) {
-    var newContact = req.body;
-    newContact.createDate = new Date();
+  app.post("/api/students", function(req, res) {
+    var newStudent = req.body;
+    newStudent.createDate = new Date();
   
-    if (!req.body.name) {
-      handleError(res, "Invalid user input", "Must provide a name.", 400);
+    if (!req.body.StudentId) {
+      handleError(res, "Invalid user input", "Must provide a student Id.", 400);
     } else {
-      db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+      db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
         if (err) {
-          handleError(res, err.message, "Failed to create new contact.");
+          handleError(res, err.message, "Failed to create new student.");
         } else {
           res.status(201).json(doc.ops[0]);
         }

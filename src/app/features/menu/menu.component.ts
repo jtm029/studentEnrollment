@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Contact, Student } from '../models';
+import { Contact, Student, Courses, Enrollment } from '../models';
 import { StudentService } from '../student.service';
 
 @Component({
@@ -10,13 +10,24 @@ import { StudentService } from '../student.service';
 })
 
 export class MenuComponent implements OnInit {
-  selectedContact: Contact;
+  selectedStudent: Student;
+  selectedCourse: Courses;
+  selectedEnrollment: Enrollment;
+
   show = true;
   showResult = false;
+  lastOptions = false;
+  showForm = true;
+
   cols: any;
   studentData: Student[];
 
+  // students: Student[];
+  // courses: Courses[];
+  // enrollments: Enrollment[];
+
   @Output() addData: EventEmitter<any> = new EventEmitter();
+
 
   constructor(private studentService: StudentService) {}
 
@@ -29,8 +40,15 @@ export class MenuComponent implements OnInit {
   //   });
   // }
 
-  selectContact(contact: Contact) {
-    this.selectedContact = contact;
+  showMenu(){
+    this.show = true;
+    this.lastOptions = false;
+    this.showResult = false;
+    this.showForm = false;
+  }
+
+  showComponent(){
+    this.lastOptions = true;
     this.show = false;
   }
 
@@ -52,18 +70,47 @@ export class MenuComponent implements OnInit {
       });
   }
 
-  createNewContact() {
-    const contact: Contact = {
-      name: '',
-      email: '',
-      phone: {
-        work: '',
-        mobile: ''
-      }
+  createNewStudent() {
+    const student: Student = {
+      StudentId: '',
+      StudentName: '',
+      Major: ''
     };
 
-    // By default, a newly-created contact will have the selected state.
-    this.selectContact(contact);
+    this.selectedStudent = student;
+    this.selectedCourse = null;
+    this.selectedEnrollment = null;
+    this.show = false;
+    this.showForm = true;
+  }
+
+  createNewCourse() {
+    const course: Courses = {
+      CourseNum: '',
+      Title: '',
+      DeptCode: '',
+      CreditHours: 0
+    };
+
+    this.selectedStudent = null;
+    this.selectedCourse = course;
+    this.selectedEnrollment = null;
+    this.show = false;
+    this.showForm = true;
+  }
+
+  createNewEnrollment() {
+    const enrollment: Enrollment = {
+      StudentId: '',
+      CourseNum: '',
+      DeptCode: ''
+    };
+
+    this.selectedStudent = null;
+    this.selectedCourse = null;
+    this.selectedEnrollment = enrollment;
+    this.show = false;
+    this.showForm = true;
   }
 
   // deleteContact = (contactId: string) => {
@@ -75,10 +122,10 @@ export class MenuComponent implements OnInit {
   //   return this.contacts;
   // }
 
-  // addContact = (contact: Contact) => {
-  //   this.contacts.push(contact);
-  //   this.selectContact(contact);
-  //   return this.contacts;
+  // addStudent = (student: Student) => {
+  //   this.students.push(student);
+  //   this.selectedStudent = student;
+  //   return this.students;
   // }
 
   // updateContact = (contact: Contact) => {

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Contact } from '../models';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Contact, Student, Enrollment, Courses } from '../models';
 import { StudentService } from '../student.service';
 
 @Component({
@@ -12,20 +12,27 @@ export class AddFormComponent {
   contact: Contact;
 
   @Input()
-  // tslint:disable-next-line: ban-types
+  student: Student;
+  @Input()
+  course: Courses;
+  @Input()
+  enrollment: Enrollment;
+
+  @Input()
   createHandler: any;
   @Input()
   updateHandler: any;
   @Input()
   deleteHandler: any;
 
+  @Output() menu: EventEmitter<boolean> = new EventEmitter();
+
+
   constructor(private contactService: StudentService) {}
 
-  // createContact(contact: Contact) {
-  //   this.contactService.createContact(contact).then((newContact: Contact) => {
-  //     this.createHandler(newContact);
-  //   });
-  // }
+  createStudent(student: Student) {
+    this.contactService.createStudent(student);
+  }
 
   // updateContact(contact: Contact): void {
   //   this.contactService.updateContact(contact).then((updatedContact: Contact) => {
@@ -38,4 +45,8 @@ export class AddFormComponent {
   //     this.deleteHandler(deletedContactId);
   //   });
   // }
+
+  goMenu(){
+    this.menu.emit();
+  }
 }

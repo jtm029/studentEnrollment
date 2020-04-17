@@ -9,12 +9,14 @@ import { RouterModule, Routes } from '@angular/router';
 import {TableModule} from 'primeng/table';
 import { AddFormComponent } from './features/add-form/add-form.component';
 import { ResultTableComponent } from './features/result-table/result-table.component';
+import { ViewGivenComponent } from './features/view-given/view-given.component';
 @NgModule({
   declarations: [
     AppComponent,
     AddFormComponent,
     MenuComponent,
-    ResultTableComponent
+    ResultTableComponent,
+    ViewGivenComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -1,29 +1,27 @@
-<div *ngIf="contact" class="row">
+<div class="row">
     <div class="col-md-12">
-      <h2 *ngIf="contact._id">Contact Details</h2>
-      <h2 *ngIf="!contact._id">New Contact</h2>
+      <h2 *ngIf="student">New Student</h2>
+      <h2 *ngIf="course">New Course</h2>
+      <h2 *ngIf="enrollment">New Enrollment</h2>
     </div>
   </div>
-  <div *ngIf="contact" class="row">
+  <div *ngIf="student" class="row">
     <form class="col-md-12">
       <div class="form-group">
-        <label for="contact-name">Name</label>
-        <input class="form-control" name="contact-name" [(ngModel)]="contact.name" placeholder="Name"/>
+        <label for="student-StudentId">Student Id</label>
+        <input class="form-control" name="student-StudentId" [(ngModel)]="student.StudentId" placeholder="Student Id"/>
       </div>
       <div class="form-group">
-        <label for="contact-email">Email</label>
-        <input class="form-control" name="contact-email" [(ngModel)]="contact.email" placeholder="support@mlab.com"/>
+        <label for="student-StudentName">Student Name</label>
+        <input class="form-control" name="student-StudentName" [(ngModel)]="student.StudentName" placeholder="First and Last name"/>
       </div>
       <div class="form-group">
-        <label for="contact-phone-mobile">Mobile</label>
-        <input class="form-control" name="contact-phone-mobile" [(ngModel)]="contact.phone.mobile" placeholder="1234567890"/>
+        <label for="student-Major">Major</label>
+        <input class="form-control" name="student-Major" [(ngModel)]="student.Major" placeholder="Major"/>
       </div>
-      <div class="form-group">
-        <label for="contact-phone-work">Work</label>
-        <input class="form-control" name="contact-phone-work" [(ngModel)]="contact.phone.work" placeholder="0123456789"/>
-      </div>
-      <!-- <button class="btn btn-primary" *ngIf="!contact._id" (click)="createContact(contact)">Create</button>
-      <button class="btn btn-info" *ngIf="contact._id" (click)="updateContact(contact)">Update</button>
+      <button class="btn btn-primary" *ngIf="!student._id" (click)="createStudent(student)">Create</button>
+      <!-- <button class="btn btn-info" *ngIf="contact._id" (click)="updateContact(contact)">Update</button>
       <button class="btn btn-danger" *ngIf="contact._id" (click)="deleteContact(contact._id)">Delete</button> -->
     </form>
+    <button class="btn btn-warning" (click)="goMenu()">Menu</button>
   </div>

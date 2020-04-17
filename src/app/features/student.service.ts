@@ -8,7 +8,7 @@ export class StudentService {
 
     constructor(private http: Http) {}
 
-    // get("/api/contacts")
+    // get("/api/students")
     getStudents(): Promise<void | Student[]> {
       return this.http.get(this.studentsUrl)
                  .toPromise()
@@ -16,13 +16,13 @@ export class StudentService {
                  .catch(this.handleError);
     }
 
-    // post("/api/contacts")
-    // createContact(newContact: Contact): Promise<void | Contact> {
-    //   return this.http.post(this.contactsUrl, newContact)
-    //              .toPromise()
-    //              .then(response => response.json() as Contact)
-    //              .catch(this.handleError);
-    // }
+    // post("/api/students")
+    createStudent(newStudent: Student): Promise<void | Student> {
+      return this.http.post(this.studentsUrl, newStudent)
+                 .toPromise()
+                 .then(response => response.json() as Student)
+                 .catch(this.handleError);
+    }
 
     // get("/api/contacts/:id") endpoint not used by Angular app
 
