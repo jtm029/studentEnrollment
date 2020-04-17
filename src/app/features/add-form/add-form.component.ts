@@ -32,6 +32,10 @@ export class AddFormComponent {
 
   createStudent(student: Student) {
     this.contactService.createStudent(student);
+    console.log('student', student);
+    if (student._id){
+      this.goMenu();
+    }
   }
 
   // updateContact(contact: Contact): void {
