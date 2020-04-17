@@ -1,5 +1,7 @@
 <div >
-    <h2>Choose student courses to view</h2>
+    <h2 *ngIf="students">Choose student courses to view</h2>
+    <h2 *ngIf="enrollments">Choose department courses to view</h2>
+    <div>
      <ul class="list-group">
         <li class="list-group-item"
           *ngFor="let student of students"
@@ -17,5 +19,6 @@
           (menu)="goMenu()">
         </app-result-table>
       </div>
+    </div>
  <button *ngIf="!showResult" class="btn btn-warning" (click)="goMenu()">Menu</button>
 </div>

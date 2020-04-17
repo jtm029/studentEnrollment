@@ -17,9 +17,9 @@
       <br>
       <button class="btn btn-warning" (click)="showTable()">4) View all students</button>
       <br>
-      <button class="btn btn-warning" (click)="showComponent()">5) View all courses from a given department</button>
+      <button class="btn btn-warning" (click)="showStudents()">5) View all courses from a given department</button>
       <br>
-      <button class="btn btn-warning" (click)="showComponent()">6) View all courses for a given student</button>
+      <button class="btn btn-warning" (click)="showEnrollments()">6) View all courses for a given student</button>
     </div>
 
     <div *ngIf="showForm" class="col-md-5 col-md-offset-2">
@@ -42,6 +42,7 @@
 
     <div *ngIf="lastOptions" class="col-md-5 col-md-offset-2">
       <app-view-given
+         [sORe]="sORe"
         (menu)="showMenu()">
       </app-view-given>
     </div>

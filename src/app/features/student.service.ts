@@ -19,6 +19,14 @@ export class StudentService {
                  .catch(this.handleError);
     }
 
+    // get("/api/enrollments")
+    getEnrollments(): Promise<void | Enrollment[]> {
+      return this.http.get(this.enrollmentsUrl)
+                 .toPromise()
+                 .then(response => response.json() as Enrollment[])
+                 .catch(this.handleError);
+    }
+
     // post("/api/students")
     createStudent(newStudent: Student): Promise<void | Student> {
       return this.http.post(this.studentsUrl, newStudent)
@@ -55,6 +63,14 @@ export class StudentService {
       return this.http.get(this.coursesUrl + '/' + courseNum + '/' + deptCode)
                  .toPromise()
                  .then(response => response.json() as Courses)
+                 .catch(this.handleError);
+    }
+
+    // get("/api/courses/:code")
+    getCoursesByDeptCode(deptCode: string): Promise<void | Courses[]> {
+      return this.http.get(this.coursesUrl + '/' + deptCode)
+                 .toPromise()
+                 .then(response => response.json() as Courses[])
                  .catch(this.handleError);
     }
 

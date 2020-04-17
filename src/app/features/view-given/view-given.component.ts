@@ -10,13 +10,17 @@ import { takeWhile } from 'rxjs/operators';
   styleUrls: ['./view-given.component.css']
 })
 export class ViewGivenComponent implements OnInit {
+  @Input()
+  sORe: boolean;
+
   showResult = false;
   data: any = [];
   cols: any;
   students: Student[];
   selectedStudent: Student;
+  selectedEnrollment: Enrollment;
   courses: Courses[];
-  enrollment: Enrollment[];
+  enrollments: Enrollment[];
 
   @Input() set viewComponent(value: boolean){
 
@@ -32,7 +36,7 @@ export class ViewGivenComponent implements OnInit {
   }
 
   updateEnrollments(enroll: Enrollment[]){
-    this.enrollment = enroll;
+    this.enrollments = enroll;
   }
 
   showStudentTable(){
@@ -54,10 +58,10 @@ export class ViewGivenComponent implements OnInit {
       this.updateEnrollments(enrollments);
     });
 
-    console.log('enroll', this.enrollment);
+    console.log('enroll', this.enrollments);
 
     this.courses = [];
-    this.enrollment.forEach(enrollment => {
+    this.enrollments.forEach(enrollment => {
       this.studentService
       .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
       .then((course: Courses) => {
@@ -70,6 +74,7 @@ export class ViewGivenComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.sORe){
     this.studentService
       .getStudents()
       .then((students: Student[]) => {
@@ -77,10 +82,42 @@ export class ViewGivenComponent implements OnInit {
           return student;
         });
       });
+    } else {
+      this.studentService
+      .getEnrollments()
+      .then((enrollments: Enrollment[]) => {
+        this.enrollments = enrollments.map((enrollment) => {
+          return enrollment;
+        });
+      });
+    }
   }
 
   selectStudent(student: Student) {
     this.selectedStudent = student;
     this.showStudentTable();
+  }
+
+  selectEnrollment(enrollment: Enrollment) {
+    this.selectedEnrollment = enrollment;
+    this.showEnrollmentTable();
+  }
+
+  showEnrollmentTable(){
+    this.showResult = true;
+    this.cols = [
+      { field: 'DeptCode', header: 'Department Code' },
+      { field: 'CourseNum', header: 'Course Number' },
+      { field: 'Title', header: 'Course Title' },
+      { field: 'CreditHours', header: 'Credit Hours' }
+    ];
+
+    this.studentService
+      .getCoursesByDeptCode(this.selectedEnrollment.DeptCode)
+      .then((course: Courses[]) => {
+        this.courses = course;
+      });
+
+    this.data = this.courses;
   }
 }

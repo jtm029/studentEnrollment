@@ -66,6 +66,16 @@ function handleError(res, reason, message, code) {
       }
     });
   });
+
+  app.get("/api/enrollments", function(req, res) {
+    db.collection(ENROLLMENT_COLLECTION).find({}).toArray(function(err, docs) {
+      if (err) {
+        handleError(res, err.message, "Failed to get enrollments.");
+      } else {
+        res.status(200).json(docs);
+      }
+    });
+  });
   
   app.get("/api/enrollments/:id", function(req, res) {
     db.collection(ENROLLMENT_COLLECTION).find({ StudentId: req.params.id}).toArray(function(err, doc) {
@@ -79,6 +89,16 @@ function handleError(res, reason, message, code) {
 
   app.get("/api/courses/:id/:code", function(req, res) {
     db.collection(COURSE_COLLECTION).findOne({ CourseNum: req.params.id, DeptCode: req.params.code }, function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get courses");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+  });
+
+  app.get("/api/courses/:code", function(req, res) {
+    db.collection(COURSE_COLLECTION).find({ DeptCode: req.params.code }).toArray(function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to get courses");
       } else {

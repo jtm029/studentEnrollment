@@ -2,7 +2,7 @@
     <p-table [value]="data">
         <ng-template pTemplate="header">
             <tr>
-                <th *ngFor="let col of cols">
+                <th *ngFor="let col of cols" [ngClass]="{ 'width-170': true }">
                     {{col.header}}
                 </th>
             </tr>

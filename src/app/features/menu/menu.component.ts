@@ -18,6 +18,7 @@ export class MenuComponent implements OnInit {
   showResult = false;
   lastOptions = false;
   showForm = true;
+  sORe = true;
 
   cols: any;
   studentData: Student[];
@@ -47,9 +48,16 @@ export class MenuComponent implements OnInit {
     this.showForm = false;
   }
 
-  showComponent(){
+  showStudents(){
     this.lastOptions = true;
     this.show = false;
+    this.sORe = true;
+  }
+
+  showEnrollments(){
+    this.lastOptions = true;
+    this.show = false;
+    this.sORe = false;
   }
 
   showTable(){
@@ -89,7 +97,7 @@ export class MenuComponent implements OnInit {
       CourseNum: '',
       Title: '',
       DeptCode: '',
-      CreditHours: 0
+      CreditHours: null
     };
 
     this.selectedStudent = null;
