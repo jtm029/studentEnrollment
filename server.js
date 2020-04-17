@@ -69,12 +69,12 @@ function handleError(res, reason, message, code) {
   
   app.post("/api/students", function(req, res) {
     var newStudent = req.body;
-    newStudent.createDate = new Date();
+    newStudent._id = new ObjectID();
   
     if (!req.body.StudentId) {
       handleError(res, "Invalid user input", "Must provide a student Id.", 400);
     } else {
-      db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
+      db.collection(STUDENT_COLLECTION).insertOne(newStudent, function(err, doc) {
         if (err) {
           handleError(res, err.message, "Failed to create new student.");
         } else {
