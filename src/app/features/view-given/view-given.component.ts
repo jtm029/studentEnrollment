@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
-import { Student } from '../models';
+import { Student, Courses, Enrollment } from '../models';
 import { StudentService } from '../student.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class ViewGivenComponent implements OnInit {
   cols: any;
   students: Student[];
   selectedStudent: Student;
+  courses: Courses[];
+  enrollment: Enrollment[];
 
   @Input() set viewComponent(value: boolean){
 
@@ -31,16 +33,29 @@ export class ViewGivenComponent implements OnInit {
   showStudentTable(){
     this.showResult = true;
     this.cols = [
-      { field: 'StudentId', header: 'Student Id' },
-      { field: 'StudentName', header: 'Student Name' },
-      { field: 'Major', header: 'Major' }
+      { field: 'DeptCode', header: 'Department Code' },
+      { field: 'CourseNum', header: 'Course Number' },
+      { field: 'Title', header: 'Course Title' },
+      { field: 'CreditHours', header: 'Credit Hours' }
     ];
 
     this.studentService
-    .getStudent(this.selectedStudent._id)
-    .then((student: Student) => {
-      this.data = student;
+    .getEnrollmentsByStudentId(this.selectedStudent._id)
+    .then((enrollments: Enrollment[]) => {
+      this.enrollment = enrollments.map((enrollment) => {
+        return enrollment;
+      });
     });
+
+    this.courses = [];
+    this.enrollment.forEach(enrollment => {
+      this.studentService
+      .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
+      .then((course: Courses) => {
+        this.courses.push(course);
+      });
+    });
+    this.data = this.courses;
   }
 
   ngOnInit() {

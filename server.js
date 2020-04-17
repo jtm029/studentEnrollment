@@ -67,10 +67,20 @@ function handleError(res, reason, message, code) {
     });
   });
   
-  app.get("/api/students/:id", function(req, res) {
-    db.collection(STUDENT_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+  app.get("/api/enrollments/:id", function(req, res) {
+    db.collection(ENROLLMENT_COLLECTION).find({ StudentId: req.params.id }).toArray(function(err, doc) {
       if (err) {
-        handleError(res, err.message, "Failed to get student");
+        handleError(res, err.message, "Failed to get enrollment");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+  });
+
+  app.get("/api/courses/:id/:code", function(req, res) {
+    db.collection(COURSE_COLLECTION).findOne({ CourseNum: req.params.id, DeptCode: req.params.code }, function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get courses");
       } else {
         res.status(200).json(doc);
       }

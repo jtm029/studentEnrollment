@@ -45,7 +45,6 @@ export class AddFormComponent {
     if ((course.DeptCode) && (course.CourseNum) && (course.Title) && (course.CreditHours)){
       this.goMenu();
     } else {
-      console.log('here')
       this.error = true;
     }
   }

@@ -42,11 +42,19 @@ export class StudentService {
                    .catch(this.handleError);
       }
 
-    // get("/api/students/:id")
-    getStudent(studentId: string): Promise<void | Student> {
-      return this.http.delete(this.studentsUrl + '/' + studentId)
+      // get("/api/enrollments/:id")
+    getEnrollmentsByStudentId(studentId: string): Promise<void | Enrollment[]> {
+      return this.http.get(this.enrollmentsUrl + '/' + studentId)
                  .toPromise()
-                 .then(response => response.json() as Student)
+                 .then(response => response.json() as Enrollment[])
+                 .catch(this.handleError);
+    }
+
+    // get("/api/courses/:id/:code")
+    getCoursesByCourseNum(courseNum: string, deptCode: string): Promise<void | Courses> {
+      return this.http.get(this.coursesUrl + '/' + courseNum + '/' + deptCode)
+                 .toPromise()
+                 .then(response => response.json() as Courses)
                  .catch(this.handleError);
     }
 
