@@ -1,13 +1,32 @@
-<div >
-    <h2 *ngIf="students">Choose student courses to view</h2>
-    <h2 *ngIf="enrollments">Choose department courses to view</h2>
-    <div>
-     <ul class="list-group">
+<div>
+  <div *ngIf="students">
+      <h2 >Choose student courses to view</h2>
+      <ul class="list-group">
+          <li class="list-group-item"
+            *ngFor="let student of students"
+            (click)="selectStudent(student)"
+            [class.active]="student === selectedStudent">
+            {{student.StudentName}}
+          </li>
+        </ul>
+
+        <div *ngIf="showResult" class="col-md-5 col-md-offset-2">
+          <app-result-table
+            [showResults]="showResult"
+            [cols]="cols"
+            [data]="data"
+            (menu)="goMenu()">
+          </app-result-table>
+        </div>
+      </div>
+    <div *ngIf="enrollments">
+      <h2>Choose department courses to view</h2>
+      <ul class="list-group">
         <li class="list-group-item"
-          *ngFor="let student of students"
-          (click)="selectStudent(student)"
-          [class.active]="student === selectedStudent">
-          {{student.StudentName}}
+          *ngFor="let enrollment of enrollments"
+          (click)="selectEnrollment(enrollment)"
+          [class.active]="enrollment === selectedEnrollment">
+          {{enrollment.DeptCode}}
         </li>
       </ul>
 

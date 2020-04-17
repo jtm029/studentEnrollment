@@ -20,7 +20,7 @@ export class ViewGivenComponent implements OnInit {
   selectedStudent: Student;
   selectedEnrollment: Enrollment;
   courses: Courses[];
-  enrollments: Enrollment[];
+  enrollments: Enrollment[] = [];
 
   @Input() set viewComponent(value: boolean){
 
@@ -33,10 +33,6 @@ export class ViewGivenComponent implements OnInit {
 
   goMenu(){
     this.menu.emit();
-  }
-
-  updateEnrollments(enroll: Enrollment[]){
-    this.enrollments = enroll;
   }
 
   showStudentTable(){
@@ -55,7 +51,7 @@ export class ViewGivenComponent implements OnInit {
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .pipe(takeWhile(() => true))
     .subscribe((enrollments: Enrollment[]) => {
-      this.updateEnrollments(enrollments);
+      this.enrollments = enrollments;
     });
 
     console.log('enroll', this.enrollments);
