@@ -40,7 +40,7 @@ export class ViewGivenComponent implements OnInit {
     ];
 
     console.log('student', this.selectedStudent, this.selectedStudent._id);
-    this.enrollment = [];
+    // this.enrollment = [];
 
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
