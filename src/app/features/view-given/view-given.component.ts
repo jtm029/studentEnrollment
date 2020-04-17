@@ -39,13 +39,16 @@ export class ViewGivenComponent implements OnInit {
       { field: 'CreditHours', header: 'Credit Hours' }
     ];
 
+    console.log('student', this.selectedStudent);
     this.studentService
-    .getEnrollmentsByStudentId(this.selectedStudent._id)
+    .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
       this.enrollment = enrollments.map((enrollment) => {
         return enrollment;
       });
     });
+
+    console.log('enroll', this.enrollment);
 
     this.courses = [];
     this.enrollment.forEach(enrollment => {
@@ -55,6 +58,8 @@ export class ViewGivenComponent implements OnInit {
         this.courses.push(course);
       });
     });
+
+    console.log('courses', this.courses);
     this.data = this.courses;
   }
 
