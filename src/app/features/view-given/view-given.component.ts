@@ -43,7 +43,7 @@ export class ViewGivenComponent implements OnInit {
     this.enrollment = [];
 
     this.studentService
-    .getEnrollmentsByStudentId(this.selectedStudent._id)
+    .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
       this.enrollment = enrollments.map((enrollment) => {
         return enrollment;
