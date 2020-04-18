@@ -2,7 +2,7 @@
     <p-table [value]="data">
         <ng-template pTemplate="header">
             <tr>
-                <th *ngFor="let col of cols" [ngClass]="{ 'width-170': true }">
+                <th *ngFor="let col of cols"  style="width: 150px;">
                     {{col.header}}
                 </th>
             </tr>
@@ -16,5 +16,5 @@
         </ng-template>
     </p-table>
     
-    <button class="btn btn-warning" (click)="goMenu()">Menu</button>
+    <button class="btn btn-warning button" (click)="goMenu()">Menu</button>
 </div>

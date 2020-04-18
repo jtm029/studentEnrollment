@@ -70,7 +70,8 @@ export class ViewGivenComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.sORe){
+    if (!this.sORe){
+    console.log('first');
     this.studentService
       .getStudents()
       .then((students: Student[]) => {
@@ -79,6 +80,7 @@ export class ViewGivenComponent implements OnInit {
         });
       });
     } else {
+      console.log('second');
       this.studentService
       .getEnrollments()
       .then((enrollments: Enrollment[]) => {

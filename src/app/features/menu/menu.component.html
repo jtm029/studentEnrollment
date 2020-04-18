@@ -1,4 +1,5 @@
-<div class="row nav">
+<div class="row container">
+  <div class="align-middle nav">
     <div *ngIf="show" class="col-md-5">
       <h2>Student Enrollment Navigation</h2>
       <!-- <ul class="list-group">
@@ -9,17 +10,17 @@
           {{contact.name}}
         </li>
       </ul> -->
-      <button class="btn btn-warning" (click)="createNewStudent()">1) Add a student to the Student table</button>
+      <button class="btn btn-warning button" (click)="createNewStudent()">1) Add a student to the Student table</button>
       <br>
-      <button class="btn btn-warning" (click)="createNewCourse()">2) Add a course to the Course table</button>
+      <button class="btn btn-warning button" (click)="createNewCourse()">2) Add a course to the Course table</button>
       <br>
-      <button class="btn btn-warning" (click)="createNewEnrollment()">3) Add an application to the Enrollment table</button>
+      <button class="btn btn-warning button" (click)="createNewEnrollment()">3) Add an application to the Enrollment table</button>
       <br>
-      <button class="btn btn-warning" (click)="showTable()">4) View all students</button>
+      <button class="btn btn-warning button" (click)="showTable()">4) View all students</button>
       <br>
-      <button class="btn btn-warning" (click)="showStudents()">5) View all courses from a given department</button>
+      <button class="btn btn-warning button" (click)="showStudents()">5) View all courses from a given department</button>
       <br>
-      <button class="btn btn-warning" (click)="showEnrollments()">6) View all courses for a given student</button>
+      <button class="btn btn-warning button" (click)="showEnrollments()">6) View all courses for a given student</button>
     </div>
 
     <div *ngIf="showForm" class="col-md-5 col-md-offset-2">
@@ -45,5 +46,6 @@
          [sORe]="sORe"
         (menu)="showMenu()">
       </app-view-given>
+    </div>
     </div>
   </div>
