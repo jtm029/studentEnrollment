@@ -65,7 +65,6 @@ export class ViewGivenComponent implements OnInit {
 
   ngOnInit() {
     if (!this.sORe){
-    console.log('first');
     this.studentService
       .getStudents()
       .then((students: Student[]) => {
@@ -75,32 +74,29 @@ export class ViewGivenComponent implements OnInit {
       });
     this.enrollmentsShow = false;
     } else {
-      console.log('second');
       this.studentService
       .getEnrollments()
       .then((enrollments: Enrollment[]) => {
         this.enrollments = enrollments.map((enrollment) => {
           return enrollment;
         });
-      });
-      this.enrollments = this.enrollments.filter((test, index, array) =>
+        this.enrollments = this.enrollments.filter((test, index, array) =>
      index === array.findIndex((findTest) =>
         findTest.DeptCode === test.DeptCode
      )
   );
+      });
       this.students = null;
       this.enrollmentsShow = true;
     }
   }
 
   selectStudent(student: Student) {
-    console.log('selectStudent');
     this.selectedStudent = student;
     this.showStudentTable();
   }
 
   selectEnrollment(enrollment: Enrollment) {
-    console.log('selectEnrollment');
     this.selectedEnrollment = enrollment;
     this.showEnrollmentTable();
   }
@@ -119,13 +115,11 @@ export class ViewGivenComponent implements OnInit {
     this.studentService
       .getCoursesByDeptCode(this.selectedEnrollment.DeptCode)
       .then((course: Courses[]) => {
-        console.log('courses', course);
         course.forEach(singleCourse => {
           this.courses.push(singleCourse);
         });
       });
 
     this.data = this.courses;
-    console.log('dataE', this.data);
   }
 }
