@@ -2,13 +2,14 @@
     display: flex;
     background-color: #502700;
     justify-content: center;
-    width: 100%;
+    max-width: 120%;
     height: 100vh;
     color: white;
-    /* margin-top: 20%; */
   }
   
-  
+  body, html {
+    width: 100%;
+  }
   .nav {
     align-self: center;
     width: 100%;
