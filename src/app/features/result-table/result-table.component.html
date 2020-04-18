@@ -2,14 +2,14 @@
     <p-table [value]="data">
         <ng-template pTemplate="header">
             <tr>
-                <th *ngFor="let col of cols"  style="width: 180px;">
+                <th *ngFor="let col of cols"  style="width: 250px;">
                     {{col.header}}
                 </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-car>
             <tr>
-                <td *ngFor="let col of cols" style="width: 180px;">
+                <td *ngFor="let col of cols" style="width: 250px;">
                         {{car[col.field]}}
                 </td>
             </tr>
