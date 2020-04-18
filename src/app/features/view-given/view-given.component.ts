@@ -52,7 +52,7 @@ export class ViewGivenComponent implements OnInit {
     ];
 
     console.log('student', this.selectedStudent);
-    // this.enrollment = [];
+    this.enrollments = [];
 
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
@@ -70,8 +70,10 @@ export class ViewGivenComponent implements OnInit {
       this.studentService
       .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
       .then((course: Courses) => {
+        console.log('serviceCourse', course);
         this.courses.push(course);
       });
+      this.data = this.courses;
     });
 
     console.log('courses', this.courses);
