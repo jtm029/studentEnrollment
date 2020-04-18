@@ -66,7 +66,7 @@ export class ViewGivenComponent implements OnInit {
     console.log('enroll', this.enrollments, this.getEnrollments());
 
     this.courses = [];
-    this.getEnrollments().forEach(enrollment => {
+    this.enrollments.forEach(enrollment => {
       this.studentService
       .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
       .then((course: Courses) => {
@@ -114,6 +114,7 @@ export class ViewGivenComponent implements OnInit {
   selectStudent(student: Student) {
     console.log('selectStudent');
     this.selectedStudent = student;
+    this.showStudentTable();
     this.showStudentTable();
   }
 
