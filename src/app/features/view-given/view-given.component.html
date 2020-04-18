@@ -2,7 +2,7 @@
   <div *ngIf="students">
       <h2 >Choose student courses to view</h2>
       <ul class="list-group">
-          <li class="list-group-item"
+          <li class="list-group-item choice"
             *ngFor="let student of students"
             (click)="selectStudent(student)"
             [class.active]="student === selectedStudent">

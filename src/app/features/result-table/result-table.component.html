@@ -9,7 +9,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-car>
             <tr>
-                <td *ngFor="let col of cols">
+                <td *ngFor="let col of cols" style="width: 180px;">
                         {{car[col.field]}}
                 </td>
             </tr>

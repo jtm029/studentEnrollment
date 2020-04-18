@@ -90,6 +90,11 @@ export class ViewGivenComponent implements OnInit {
           return enrollment;
         });
       });
+      this.enrollments = this.enrollments.filter((test, index, array) =>
+     index === array.findIndex((findTest) =>
+        findTest.DeptCode === test.DeptCode
+     )
+  );
       this.students = null;
     }
   }
