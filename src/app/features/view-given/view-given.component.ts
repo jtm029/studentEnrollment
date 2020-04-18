@@ -59,6 +59,7 @@ export class ViewGivenComponent implements OnInit {
     console.log('student', this.selectedStudent);
     this.enrollments = [];
 
+    this.courses = [];
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
@@ -73,7 +74,6 @@ export class ViewGivenComponent implements OnInit {
         });
     });
 
-    // this.courses = [];
     // // tslint:disable-next-line: prefer-for-of
     // for (let i = 0; i < this.enrollments.length; i++) {
     //   console.log('here');
