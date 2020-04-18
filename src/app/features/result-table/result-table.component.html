@@ -1,8 +1,8 @@
-<div *ngIf="showResults">
+<div *ngIf="showResults" style="float: left;">
     <p-table [value]="data">
         <ng-template pTemplate="header">
             <tr>
-                <th *ngFor="let col of cols"  style="width: 150px;">
+                <th *ngFor="let col of cols"  style="width: 150px; padding-right: 10%;">
                     {{col.header}}
                 </th>
             </tr>
