@@ -52,6 +52,7 @@ export class ViewGivenComponent implements OnInit {
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .pipe(takeWhile(() => true))
     .subscribe((enrollments: Enrollment[]) => {
+      console.log('serviceEnroll', enrollments);
       this.enrollments = enrollments;
     });
 
