@@ -52,10 +52,11 @@ export class StudentService {
       }
 
       // get("/api/enrollments/:id")
-    getEnrollmentsByStudentId(studentId: string): Observable<Enrollment[]> {
+    getEnrollmentsByStudentId(studentId: string): Promise<void | Enrollment[]> {
       return this.http.get(this.enrollmentsUrl + '/' + studentId)
-                 .pipe(
-                 map(response => response.json() as Enrollment[]));
+                 .toPromise()
+                 .then(response => response.json() as Enrollment[])
+                 .catch(this.handleError);
     }
 
     // get("/api/courses/:id/:code")

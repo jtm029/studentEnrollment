@@ -22,7 +22,7 @@ export class ViewGivenComponent implements OnInit {
   selectedStudent: Student;
   selectedEnrollment: Enrollment;
   courses: Courses[];
-  enrollments: any[];
+  enrollments: Enrollment[];
 
   @Input() set viewComponent(value: boolean){
 
@@ -31,7 +31,7 @@ export class ViewGivenComponent implements OnInit {
   @Output() menu: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private readonly studentService: StudentService,
-              private readonly changeDetector: ChangeDetectorRef) {
+              private readonly changeDector: ChangeDetectorRef) {
    }
 
   goMenu(){
@@ -41,7 +41,6 @@ export class ViewGivenComponent implements OnInit {
   changeEnrollment(enrollment: Enrollment[]){
     console.log('newEnroll', enrollment);
     this.enrollments = enrollment;
-    this.changeDetector.detectChanges();
   }
 
   showStudentTable(){
@@ -58,10 +57,10 @@ export class ViewGivenComponent implements OnInit {
 
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
-    .pipe(takeWhile(() => true))
-    .subscribe((enrollments: Enrollment[]) => {
+    .then((enrollments: Enrollment[]) => {
       console.log('serviceEnroll', enrollments);
-      this.changeEnrollment(enrollments);
+      this.enrollments = enrollments;
+      this.enrollments = enrollments;
     });
 
     console.log('enroll', this.enrollments);
