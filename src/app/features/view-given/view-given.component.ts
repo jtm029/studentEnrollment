@@ -36,6 +36,11 @@ export class ViewGivenComponent implements OnInit {
     this.menu.emit();
   }
 
+  changeEnrollment(enrollment: Enrollment[]){
+    console.log('newEnroll', enrollment);
+    this.enrollments = enrollment;
+  }
+
   showStudentTable(){
     this.showResult = true;
     this.cols = [
@@ -53,7 +58,7 @@ export class ViewGivenComponent implements OnInit {
     .pipe(takeWhile(() => true))
     .subscribe((enrollments: Enrollment[]) => {
       console.log('serviceEnroll', enrollments);
-      this.enrollments = enrollments;
+      this.changeEnrollment(enrollments);
     });
 
     console.log('enroll', this.enrollments);
