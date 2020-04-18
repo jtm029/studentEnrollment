@@ -58,16 +58,17 @@ export class ViewGivenComponent implements OnInit {
     console.log('student', this.selectedStudent);
     this.enrollments = [];
 
+    let enroll: Enrollment[];
+
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
-      enrollments.forEach(enroll =>{
-        this.enrollments.push(enroll);
-      });
-      console.log('serviceEnroll', enrollments);
+        this.enrollments = enrollments;
+        enroll = enrollments;
+        console.log('serviceEnroll', enrollments);
     });
 
-    console.log('enroll', this.enrollments, this.getEnrollments());
+    console.log('enroll', this.enrollments, enroll);
 
     this.courses = [];
     // tslint:disable-next-line: prefer-for-of
