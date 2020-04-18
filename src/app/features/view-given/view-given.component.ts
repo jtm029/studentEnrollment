@@ -38,12 +38,13 @@ export class ViewGivenComponent implements OnInit {
     this.menu.emit();
   }
 
-  getEnrollments(){
-    return this.enrollments;
+  setEnrollments(enroll: Enrollment[]){
+    this.enrollments = enroll;
+    console.log('serviceEnroll', enroll);
   }
 
   getCourseByCourseNum(){
-  
+
   }
 
   showStudentTable(){
@@ -63,9 +64,8 @@ export class ViewGivenComponent implements OnInit {
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
-        this.enrollments = enrollments;
+        this.setEnrollments(enrollments);
         enroll = enrollments;
-        console.log('serviceEnroll', enrollments);
     });
 
     console.log('enroll', this.enrollments, enroll);
