@@ -38,15 +38,6 @@ export class ViewGivenComponent implements OnInit {
     this.menu.emit();
   }
 
-  setEnrollments(enroll: Enrollment[]){
-    this.enrollments = enroll;
-    console.log('serviceEnroll', enroll);
-  }
-
-  getCourseByCourseNum(){
-
-  }
-
   showStudentTable(){
     this.showResult = true;
     this.cols = [
@@ -56,38 +47,20 @@ export class ViewGivenComponent implements OnInit {
       { field: 'CreditHours', header: 'Credit Hours' }
     ];
 
-    console.log('student', this.selectedStudent);
-    this.enrollments = [];
-
     this.courses = [];
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
         enrollments.forEach(enroll => {
-          console.log('newEnroll', enroll);
           this.studentService
           .getCoursesByCourseNum(enroll.CourseNum, enroll.DeptCode)
           .then((course: Courses) => {
-          console.log('serviceCourse', course);
           this.courses.push(course);
       });
         });
     });
 
-    // // tslint:disable-next-line: prefer-for-of
-    // for (let i = 0; i < this.enrollments.length; i++) {
-    //   console.log('here');
-    //   this.studentService
-    //   .getCoursesByCourseNum(this.enrollments[i].CourseNum, this.enrollments[i].DeptCode)
-    //   .then((course: Courses) => {
-    //     console.log('serviceCourse', course);
-    //     this.courses.push(course);
-    //   });
-    // }
-
-    console.log('courses', this.courses);
     this.data = this.courses;
-    console.log('data', this.data);
   }
 
   ngOnInit() {
@@ -141,10 +114,15 @@ export class ViewGivenComponent implements OnInit {
       { field: 'CreditHours', header: 'Credit Hours' }
     ];
 
+    this.courses = [];
+
     this.studentService
       .getCoursesByDeptCode(this.selectedEnrollment.DeptCode)
       .then((course: Courses[]) => {
-        this.courses = course;
+        console.log('courses', course);
+        course.forEach(singleCourse => {
+          this.courses.push(singleCourse);
+        });
       });
 
     this.data = this.courses;
