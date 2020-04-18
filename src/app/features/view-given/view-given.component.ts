@@ -57,8 +57,10 @@ export class ViewGivenComponent implements OnInit {
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
+      enrollments.forEach(enroll =>{
+        this.enrollments.push(enroll);
+      });
       console.log('serviceEnroll', enrollments);
-      this.enrollments = enrollments;
     });
 
     console.log('enroll', this.enrollments, this.getEnrollments());
