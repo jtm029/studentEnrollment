@@ -38,9 +38,8 @@ export class ViewGivenComponent implements OnInit {
     this.menu.emit();
   }
 
-  changeEnrollment(enrollment: Enrollment[]){
-    console.log('newEnroll', enrollment);
-    this.enrollments = enrollment;
+  getEnrollments(){
+    return this.enrollments;
   }
 
   showStudentTable(){
@@ -60,13 +59,12 @@ export class ViewGivenComponent implements OnInit {
     .then((enrollments: Enrollment[]) => {
       console.log('serviceEnroll', enrollments);
       this.enrollments = enrollments;
-      this.enrollments = enrollments;
     });
 
-    console.log('enroll', this.enrollments);
+    console.log('enroll', this.enrollments, this.getEnrollments());
 
     this.courses = [];
-    this.enrollments.forEach(enrollment => {
+    this.getEnrollments().forEach(enrollment => {
       this.studentService
       .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
       .then((course: Courses) => {
