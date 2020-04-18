@@ -43,15 +43,7 @@ export class ViewGivenComponent implements OnInit {
   }
 
   getCourseByCourseNum(){
-    this.courses = [];
-    this.enrollments.forEach(enrollment => {
-      this.studentService
-      .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
-      .then((course: Courses) => {
-        console.log('serviceCourse', course);
-        this.courses.push(course);
-      });
-    });
+  
   }
 
   showStudentTable(){
@@ -76,7 +68,18 @@ export class ViewGivenComponent implements OnInit {
     });
 
     console.log('enroll', this.enrollments, this.getEnrollments());
-    this.getCourseByCourseNum();
+
+    this.courses = [];
+    this.enrollments.forEach(enrollment => { 
+      console.log('here');
+      this.studentService
+      .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
+      .then((course: Courses) => {
+        console.log('serviceCourse', course);
+        this.courses.push(course);
+      });
+    });
+
     console.log('courses', this.courses);
     this.data = this.courses;
     console.log('data', this.data);
