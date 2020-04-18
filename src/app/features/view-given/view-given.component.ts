@@ -22,7 +22,7 @@ export class ViewGivenComponent implements OnInit {
   selectedStudent: Student;
   selectedEnrollment: Enrollment;
   courses: Courses[];
-  enrollments: Enrollment[];
+  enrollments: any[];
 
   @Input() set viewComponent(value: boolean){
 
