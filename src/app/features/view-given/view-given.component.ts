@@ -42,6 +42,18 @@ export class ViewGivenComponent implements OnInit {
     return this.enrollments;
   }
 
+  getCourseByCourseNum(){
+    this.courses = [];
+    this.enrollments.forEach(enrollment => {
+      this.studentService
+      .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
+      .then((course: Courses) => {
+        console.log('serviceCourse', course);
+        this.courses.push(course);
+      });
+    });
+  }
+
   showStudentTable(){
     this.showResult = true;
     this.cols = [
@@ -64,18 +76,7 @@ export class ViewGivenComponent implements OnInit {
     });
 
     console.log('enroll', this.enrollments, this.getEnrollments());
-
-    this.courses = [];
-    this.enrollments.forEach(enrollment => {
-      this.studentService
-      .getCoursesByCourseNum(enrollment.CourseNum, enrollment.DeptCode)
-      .then((course: Courses) => {
-        console.log('serviceCourse', course);
-        this.courses.push(course);
-      });
-      this.data = this.courses;
-    });
-
+    this.getCourseByCourseNum();
     console.log('courses', this.courses);
     this.data = this.courses;
     console.log('data', this.data);
@@ -114,7 +115,6 @@ export class ViewGivenComponent implements OnInit {
   selectStudent(student: Student) {
     console.log('selectStudent');
     this.selectedStudent = student;
-    this.showStudentTable();
     this.showStudentTable();
   }
 
