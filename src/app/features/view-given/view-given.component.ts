@@ -67,6 +67,7 @@ export class ViewGivenComponent implements OnInit {
 
     console.log('courses', this.courses);
     this.data = this.courses;
+    console.log('data', this.data);
   }
 
   ngOnInit() {
@@ -79,6 +80,7 @@ export class ViewGivenComponent implements OnInit {
           return student;
         });
       });
+    this.enrollments = null;
     } else {
       console.log('second');
       this.studentService
@@ -88,15 +90,18 @@ export class ViewGivenComponent implements OnInit {
           return enrollment;
         });
       });
+      this.students = null;
     }
   }
 
   selectStudent(student: Student) {
+    console.log('selectStudent');
     this.selectedStudent = student;
     this.showStudentTable();
   }
 
   selectEnrollment(enrollment: Enrollment) {
+    console.log('selectEnrollment');
     this.selectedEnrollment = enrollment;
     this.showEnrollmentTable();
   }
@@ -117,5 +122,6 @@ export class ViewGivenComponent implements OnInit {
       });
 
     this.data = this.courses;
+    console.log('dataE', this.data);
   }
 }

@@ -22,7 +22,7 @@
     <div *ngIf="enrollments">
       <h2>Choose department courses to view</h2>
       <ul class="list-group">
-        <li class="list-group-item"
+        <li class="list-group-item choice"
           *ngFor="let enrollment of enrollments"
           (click)="selectEnrollment(enrollment)"
           [class.active]="enrollment === selectedEnrollment">
