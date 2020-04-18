@@ -14,6 +14,7 @@ export class ViewGivenComponent implements OnInit {
   sORe: boolean;
 
   showResult = false;
+  enrollmentsShow: boolean;
   data: any = [];
   cols: any;
   students: Student[];
@@ -80,7 +81,7 @@ export class ViewGivenComponent implements OnInit {
           return student;
         });
       });
-    this.enrollments = null;
+    this.enrollmentsShow = false;
     } else {
       console.log('second');
       this.studentService
@@ -96,6 +97,7 @@ export class ViewGivenComponent implements OnInit {
      )
   );
       this.students = null;
+      this.enrollmentsShow = true;
     }
   }
 
