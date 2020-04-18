@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { Student, Courses, Enrollment } from '../models';
 import { StudentService } from '../student.service';
 import { takeWhile } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-given',
@@ -21,7 +22,7 @@ export class ViewGivenComponent implements OnInit {
   selectedStudent: Student;
   selectedEnrollment: Enrollment;
   courses: Courses[];
-  enrollments: Enrollment[] = [];
+  enrollments: Enrollment[];
 
   @Input() set viewComponent(value: boolean){
 
@@ -29,7 +30,8 @@ export class ViewGivenComponent implements OnInit {
 
   @Output() menu: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private studentService: StudentService) {
+  constructor(private readonly studentService: StudentService,
+              private readonly changeDetector: ChangeDetectorRef) {
    }
 
   goMenu(){
@@ -39,6 +41,7 @@ export class ViewGivenComponent implements OnInit {
   changeEnrollment(enrollment: Enrollment[]){
     console.log('newEnroll', enrollment);
     this.enrollments = enrollment;
+    this.changeDetector.detectChanges();
   }
 
   showStudentTable(){
