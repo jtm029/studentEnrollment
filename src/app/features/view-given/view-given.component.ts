@@ -59,28 +59,31 @@ export class ViewGivenComponent implements OnInit {
     console.log('student', this.selectedStudent);
     this.enrollments = [];
 
-    let enroll: Enrollment[];
-
     this.studentService
     .getEnrollmentsByStudentId(this.selectedStudent.StudentId)
     .then((enrollments: Enrollment[]) => {
-        this.setEnrollments(enrollments);
-        enroll = enrollments;
+        enrollments.forEach(enroll => {
+          console.log('newEnroll', enroll);
+          this.studentService
+          .getCoursesByCourseNum(enroll.CourseNum, enroll.DeptCode)
+          .then((course: Courses) => {
+          console.log('serviceCourse', course);
+          this.courses.push(course);
+      });
+        });
     });
 
-    console.log('enroll', this.enrollments, enroll);
-
-    this.courses = [];
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.enrollments.length; i++) {
-      console.log('here');
-      this.studentService
-      .getCoursesByCourseNum(this.enrollments[i].CourseNum, this.enrollments[i].DeptCode)
-      .then((course: Courses) => {
-        console.log('serviceCourse', course);
-        this.courses.push(course);
-      });
-    }
+    // this.courses = [];
+    // // tslint:disable-next-line: prefer-for-of
+    // for (let i = 0; i < this.enrollments.length; i++) {
+    //   console.log('here');
+    //   this.studentService
+    //   .getCoursesByCourseNum(this.enrollments[i].CourseNum, this.enrollments[i].DeptCode)
+    //   .then((course: Courses) => {
+    //     console.log('serviceCourse', course);
+    //     this.courses.push(course);
+    //   });
+    // }
 
     console.log('courses', this.courses);
     this.data = this.courses;
