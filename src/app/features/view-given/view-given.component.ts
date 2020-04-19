@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
-import { MenuComponent } from '../menu/menu.component';
 import { Student, Courses, Enrollment } from '../models';
 import { StudentService } from '../student.service';
-import { takeWhile } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-given',

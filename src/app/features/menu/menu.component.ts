@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Contact, Student, Courses, Enrollment } from '../models';
+import { Student, Courses, Enrollment } from '../models';
 import { StudentService } from '../student.service';
 
 @Component({
@@ -23,10 +23,6 @@ export class MenuComponent implements OnInit {
   cols: any;
   studentData: Student[];
 
-  // students: Student[];
-  // courses: Courses[];
-  // enrollments: Enrollment[];
-
   @Output() addData: EventEmitter<any> = new EventEmitter();
 
 
@@ -34,12 +30,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  // private getIndexOfContact = (contactId: string) => {
-  //   return this.contacts.findIndex((contact) => {
-  //     return contact._id === contactId;
-  //   });
-  // }
 
   showMenu(){
     this.show = true;

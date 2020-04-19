@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Contact, Student, Enrollment, Courses } from '../models';
 import { StudentService } from '../student.service';
 
@@ -58,18 +58,6 @@ export class AddFormComponent {
       this.error = true;
     }
   }
-
-  // updateContact(contact: Contact): void {
-  //   this.contactService.updateContact(contact).then((updatedContact: Contact) => {
-  //     this.updateHandler(updatedContact);
-  //   });
-  // }
-
-  // deleteContact(contactId: string): void {
-  //   this.contactService.deleteContact(contactId).then((deletedContactId: string) => {
-  //     this.deleteHandler(deletedContactId);
-  //   });
-  // }
 
   goMenu(){
     this.menu.emit();
